@@ -1,0 +1,63 @@
+% Metódy inžinierskej práce
+\documentclass[10pt,twoside,english,a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cite}
+
+\pagestyle{headings}
+
+
+\newcommand{\projtitle}{Proactive Voice-First AI Companion for Hands-Free Daily Life of Blind and Low-Vision People}
+\newcommand{\projacronym}{KIRTA}
+
+\title{\projacronym: \projtitle\thanks{Semester project in Metódy inžinierskej práce, academic year 2026/27, supervisor: Ing. Vladimír Mlynarovič, PhD.}}
+
+\author{Maksym Bulat, Yevgeniy Demianchuk, Egor Donin\\[2pt]
+	{\small Slovak University of Technology in Bratislava}\\
+	{\small Faculty of Informatics and Information Technologies}\\
+	{\small \texttt{xbulat@stuba.sk, xdemianchuk@stuba.sk, xdonin@stuba.sk}}
+	}
+
+\date{\small \today}
+
+% added this, cause defoult name is 'References' /this command rename the bibliography heading into Literature
+\addto\captionsenglish{\renewcommand{\refname}{Literature}}
+
+
+\begin{document}
+
+\maketitle
+
+\section*{Annotation}
+
+\subsection*{The essence of the project}
+
+\projacronym{} is a voice-first daily-life AI companion for blind and low-vision people.
+
+\subsection*{Target audience}
+
+More than 1 billion people experience sight loss; 43 million of them are blind~\cite{iapb}. \projacronym's primary target audience is blind and low-vision people. However, later expansion into people with other disabilities is possible.
+
+\subsection*{Problem}
+
+Nowadays, people depend on smartphones for navigation, communication, shopping, studying, working, banking, entertainment, and other mundane tasks. People with blindness are no exception; for them, smartphones serve as a lifeline~\cite{senjam2022}, replacing their sight. Yet using a phone requires them to hold it, orient themselves on the touchscreen, and ask other people for help when needed. Existing apps mostly work on request; for example, reading text from a photo/screen one at a time or helping with navigation. They also struggle with understanding users' intent~\cite{xie2025}.
+
+\subsection*{Solution}
+
+Instead of holding the phone all the time, the phone is secured by a case with a strap. Its camera acts as the user's eyes, analyzing the surroundings with AI. Then the information is narrated to the user's headphones. Most of the time, the app is silent, breaking the silence only in critical moments, when the user is in danger, or on request. \projacronym{} is also expected to help with navigation, calls, messages, and alerts. More functions are to come later; for example, ordering goods and food, consent-based face recognition~\cite{gdpr, aiact, akter2022}, tourist guidance, and integration into desktop operating systems. Security comes first, so everything involving biometric data and hazard detection will run locally, and payments are always confirmed by the user in the service's own app. Other features use the cloud when the internet is available.
+
+\subsection*{Monetization}
+
+
+Essential and local functions will be free. However, the price of the premium subscription will depend on the support of partners (banks, retailers, transit) and the state~\cite{eaa}.
+
+{\small
+\bibliography{literatura}
+}
+\bibliographystyle{unsrt}
+
+\end{document}
