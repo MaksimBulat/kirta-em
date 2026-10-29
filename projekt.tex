@@ -60,6 +60,38 @@ Essential and local functions will be free. However, the price of the premium su
 \subsection*{Navigation}
 \subsection*{Friend}
 
+\subsection*{Voice command recognition}
+
+Voice commands will be one of the main ways to use KIRTA. For a blind person, it is often easier to say what they need than to look for a button on a touchscreen. The user could say ``Describe what is in front of me'', ``Start navigation'' or ``Call Anna''. Our goal is to make these commands short and easy to remember. The application should not require the user to say a long, exact sentence every time.
+
+To recognize speech, we could use the Android \texttt{SpeechRecognizer} API. It receives spoken words and returns text which can then be checked by the application~\cite{androidspeech}. At first, KIRTA could support about ten basic commands. For example, if the recognized text contains ``call'' and a contact name, the application would understand that the user wants to make a phone call. Other commands could request a description of the camera image, repeat the last answer or stop the audio output.
+
+Recognition will not always work perfectly. Traffic, other people talking and different accents can make words harder to understand. If KIRTA is not sure what the user said, it should ask for the command again. Some Android phones support on-device speech recognition, but it is not available for every phone or language~\cite{androidspeech}. We would prefer local processing when possible because it can also help with privacy. For testing, we could try the same ten commands in a quiet room and outside, and count how many times they are understood correctly. We could also ask a few classmates to try the same commands. It would help us see whether the words are clear enough for people who did not write the program.
+
+\subsection*{Voice-controlled calls and messages}
+
+Another useful function is starting calls and writing messages without searching through the phone menus. For example, a user could say ``Call Mom''. KIRTA would search for the contact and repeat the name so the user knows who was selected. The same idea works for messages: ``Send a message to Peter'' would start a short conversation where KIRTA asks what the message should say. The user could then dictate the text normally.
+
+Before doing anything important, KIRTA should confirm what it understood. It could say ``Message to Peter: I will be late. Is that correct?'' and wait for ``yes'' or ``no''. This is especially useful when two contacts have similar names or when speech recognition makes a mistake. The user should also be able to cancel the action at any point.
+
+For a first version, we do not need to build our own phone or messaging service. Android provides \texttt{Intent} actions for opening the phone dialer and preparing an SMS message~\cite{androidintents}. The normal Android application would finish the call or send the message. This also means that some final steps may still depend on the accessibility functions of the phone, such as TalkBack. Later, we could look into other messaging applications, but starting with calls and SMS is a more realistic plan.
+
+One problem could be finding the correct contact. People often save more than one number under the same name, for example a personal and a work number. In this case, KIRTA should ask which number the user wants. We would also try messages with short names, longer names and names that sound similar. The aim is not to make the phone call faster at any cost, but to make the action understandable.
+
+\subsection*{Programming and technologies}
+
+We plan to develop KIRTA as an Android application. We would use Kotlin because it is supported for Android development and can be used in Android Studio~\cite{androidkotlin}. We chose Android mainly because smartphones already have a camera, microphone, speaker and support for Bluetooth headphones. We can use these parts instead of creating separate hardware for the first prototype.
+
+The application will need a few basic parts that work together. The first part listens to the user and recognizes commands. The second part decides what the command means and which action to start. A third part reads answers aloud using Android \texttt{TextToSpeech}~\cite{androidtts}. For example, after hearing ``What is in front of me?'', the program would request information from the camera part and then speak the result. The sound could be played through connected Bluetooth headphones using the phone's normal audio settings.
+
+For camera access, we could use the CameraX library. It is made for Android camera applications and could later provide images to an existing recognition model~\cite{androidcamerax}. We do not plan to train a new AI model from zero for this stage. Our first goal would be to connect simple functions and make them work reliably. The other team members could then work on navigation and recognizing possible dangers, while the voice interface would connect these features to the user.
+
+We would test the first version with a small set of commands, different contact names and simple spoken messages. We also need to check permissions for the microphone, camera and contacts. It is possible that the app will work differently on different Android devices, so testing on a real phone will be important. At this stage, KIRTA is still a project idea, and the exact technologies may change after the first experiments.
+
+A simple development plan would start with one Android screen and a button for recording a command. Next, we could add spoken answers and a few actions, such as opening the dialer. Only after these functions work would we connect the camera and other features from the team. It is easier to find problems step by step than to build everything at once.
+
+
+
 {\small
 \bibliography{literatura}
 }

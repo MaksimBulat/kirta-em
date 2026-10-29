@@ -1,0 +1,29 @@
+commit 2732bbb4c967da86b7d532d7f2eb2dec7f4b119c
+Author: Yehor <egordonin2009@gmail.com>
+Date:   Tue Oct 13 17:23:28 2026 +0200
+
+    KIR-5 Update LaTeX project documentation
+
+commit c098f1cf65df0bd5085d350a0942143f6b743048
+Author: Maksym Bulat <bulatmaks1703@gmail.com>
+Date:   Tue Oct 13 17:20:40 2026 +0200
+
+    KIR-6 Pridaný zdroj k zdravotným problémom
+
+commit a25bcde702050c36a50e46f30704053b254a79b3
+Author: bread113 <evgeniy.demyanchuk@gmail.com>
+Date:   Tue Oct 13 18:18:47 2026 +0300
+
+    <KIR-6> <Hold a meeting in Study Room in Maldost. Discuss the plan, rearrange workload.>
+
+commit 0b4020767163cd4d2c22f9cd66ae15b490532a4a
+Author: bread113 <evgeniy.demyanchuk@gmail.com>
+Date:   Sun Oct 4 19:30:15 2026 +0300
+
+    Zameranie projektu
+
+commit 5efc51d2feb24c87dd44c73c55217130ae8917dd
+Author: bread113 <evgeniy.demyanchuk@gmail.com>
+Date:   Sun Oct 4 18:27:14 2026 +0300
+
+    Initial commit
