@@ -58,6 +58,35 @@ Essential and local functions will be free. However, the price of the premium su
 \section*{List of functions}
 \subsection*{Video-to-audio translation}
 \subsection*{Navigation}
+
+The navigation design for KIRTA combines GPS with local camera analysis. GPS provides the general position on the map and supports the route to a destination. The local AI follows the camera feed and identifies what is happening near the person. These sections describe a preliminary design, with implementation and testing to follow.
+
+A person may be on the correct route and still face a blocked pavement, stairs or a vehicle approaching from the side. The navigation feature needs to deal with that part of the journey too. The phone will be attached to a strap, with its camera facing the surroundings, leaving the person's hands free.
+
+GPS.gov reports typical smartphone accuracy within about 4.9 metres under open sky. Accuracy gets worse near buildings, bridges and trees~\cite{gpsaccuracy}. GPS gives the app a starting position, while the camera supplies a view of the immediate surroundings. Another goal is to use visual information to refine the position estimate as the person moves. Matching what the camera sees to a particular place on the map remains an open technical question.
+
+Hazard detection is planned to run locally on the phone, analysing the camera feed throughout the walk. The recognition tasks include stairs, obstacles along the path and moving vehicles. With vehicles, movement matters as much as recognising the object: the system needs to assess whether it is approaching the user's path. Evaluation will measure detection errors and the delay between a hazard appearing and a warning being spoken.
+
+In the study of Be My AI by Xie and colleagues, participants described stopping to take pictures and checking whether they had captured the information needed for navigation. Some descriptions also lacked details about nearby obstacles~\cite{xie2025}. These findings are relevant to KIRTA's use of a camera feed that updates as the user moves.
+
+NavCog offers another useful reference. It used Bluetooth beacons installed in the environment and was tested with six blind participants on a university campus~\cite{navcog2016}. Our design centres on the camera carried by the user. Soundscape is relevant to the audio side: it explored spatial sound for nearby places and a chosen destination~\cite{soundscape}. These projects give us examples of both location support and ways to communicate directions.
+
+For everyday use, KIRTA should stay quiet until there is useful information to pass on. A possible hazard takes priority; a fuller description of the surroundings can be requested. The assistance is intended to work alongside the person's mobility skills and aids, including a white cane or guide dog.
+
+\subsection*{Narration of on-screen activity}
+
+When a new SMS arrives, KIRTA should let the user know and offer to read it. This is the simplest example of screen narration in the project. The same feature covers incoming calls, notifications and changes in the open app. AI is intended to interpret this information and produce a short explanation that can be spoken through the headphones.
+
+The explanation needs to fit what the person is doing. After pressing a button, the useful information is usually the result: whether the action succeeded, whether the app is still waiting or whether an error appeared. On opening an unfamiliar screen, a brief description of its contents and available actions may be more useful. These situations call for different amounts of detail. Repeating the whole screen after every change would make even a simple task tiring.
+
+Android provides two possible sources for this feature. Accessibility services can inspect available interface elements and receive events such as clicks and changes of focus~\cite{androidaccessibility}. A notification listener service receives updates when notifications are posted or removed~\cite{androidnotifications}. Access depends on the required configuration and permissions. In the initial Android design, these mechanisms would supply information for the AI to explain. Image-based recognition is a further option for screens where the exposed text and controls are insufficient.
+
+W3C guidance helps specify the information worth keeping in that explanation. An accessible control has a name and role, together with relevant state information. A checkbox needs its label and whether it is selected~\cite{wcagname}. Status messages describe progress, errors and action results without requiring the user to move focus to the message~\cite{wcagstatus}. A meaningful focus order also helps people follow web content~\cite{wcagfocus}. We use these web accessibility principles as a reference for the spoken interaction in KIRTA.
+
+Our proposed interaction gives the user control over longer descriptions and private messages. A short notification can be followed by a request to read more, repeat it or stop speaking. The account of AI errors in Xie and colleagues' study is relevant here too: generated explanations can include details that the input does not support~\cite{xie2025}. Screen narration therefore needs to stay grounded in the available interface information. Confirmation that a message was sent, for example, must come from the app's reported state.
+
+Phone narration will share the audio output with navigation warnings. The proposed design gives a possible hazard outside priority over an ordinary notification and avoids repeated announcements of unchanged information. Evaluation should include tasks such as noticing a new message and understanding a change on the screen. The records should include missed updates, incorrect descriptions and unnecessary interruptions.
+
 \subsection*{Friend}
 
 \subsection*{Voice command recognition}
