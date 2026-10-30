@@ -1,0 +1,39 @@
+name: Build KIRTA PDF preview
+
+on:
+  push:
+    branches: [egor-navigation-preview-20261030]
+    paths:
+      - 'projekt.tex'
+      - 'literatura.bib'
+      - '.github/workflows/build-preview.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends texlive-latex-recommended texlive-fonts-recommended
+      - name: Compile article and bibliography
+        run: |
+          pdflatex -interaction=nonstopmode -halt-on-error projekt.tex
+          bibtex projekt
+          pdflatex -interaction=nonstopmode -halt-on-error projekt.tex
+          pdflatex -interaction=nonstopmode -halt-on-error projekt.tex
+          if grep -E 'undefined references|Citation .* undefined|There were undefined' projekt.log; then exit 1; fi
+      - name: Save verified PDF in preview branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add projekt.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m 'Compile KIRTA PDF with navigation and screen narration'
+            git push origin HEAD:egor-navigation-preview-20261030
+          fi
